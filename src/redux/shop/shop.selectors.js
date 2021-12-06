@@ -3,7 +3,7 @@ import { createSelector } from "reselect";
 const shopSelector=state=>state.shop;
 const shopDataSelector=createSelector(
     [shopSelector],
-    shop=>shop.SHOP_DATA
+    shop=>shop.collections
 )
 
 export default shopDataSelector
