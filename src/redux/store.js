@@ -3,7 +3,10 @@ import rootReducer from "./root-reducer";
 import {persistStore } from 'redux-persist'
 import logger from "redux-logger";
 //logger is the middleware ,it is just just the functions that receive the actions and then do something with them and then pass them out in the root reducer
-const middleware=[logger];
+const middleware=[];
+if(process.env.NODE_ENV==="development"){
+    middleware.push(logger)
+}
 export const store=createStore(
     rootReducer,
     applyMiddleware(...middleware),
