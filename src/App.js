@@ -6,26 +6,27 @@ import React from 'react'
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
-import { auth,createUserProfileDocument } from './components/firebase/firebase.utils';
+import { addCollectionsAndDocuments, auth,createUserProfileDocument } from './components/firebase/firebase.utils';
 import { connect } from 'react-redux';
 import setCurrentUser from './redux/user/user-action';
 import { currentUserSelector } from './redux/user/user.selectors';
 import {createStructuredSelector} from 'reselect';
 import CheckoutPage from './pages/checkout/checkout.component';
 
-
+import {collectionOverviewSelector} from './redux/shop/shop.selectors'
 
 class App extends React.Component{
   unsubscribeFromAuth=null
   componentDidMount(){
-    //so normally before we fetched data is we inside of the componentDidMount method where we used to fetching data. Once the code call fetch it won't again it untill the componentDidMount will gets  rerender but we don't want to rerender our app we just want to always know when firebase has realized that the authentication state has changed , so whenever user signIn and signOut we want to be aware of that changes without maually fetc firebase give us the beast method which is onAuthStateChanged .it take function where the parameter is, what the user have state of the auth on firebase  project
-    const{setCurrentUser}=this.props;
+    const{setCurrentUser,collectionArray}=this.props;
     // console.log("this is the dispatch  user",setCurrentUser)
     // console.log("this is the user",currentUser)
+    console.log("this is the collectionArray",collectionArray)
     this.unsubscribeFromAuth=auth.onAuthStateChanged(async userAuth=>{  
       if(userAuth){
        const refUser=await createUserProfileDocument(userAuth);
        refUser.onSnapshot(snapShotObject=>{
+      // console.log('user',snapShotObject.data());
         setCurrentUser({
            id:snapShotObject.id,
            ...snapShotObject.data()
@@ -36,7 +37,8 @@ class App extends React.Component{
         setCurrentUser(userAuth)
       }    
     })
-    //auth.onAuthStateChanged return us the function thats why we assign it to the unsubscribeFromAuth that function will we call it will close the subsciption 
+    // addCollectionsAndDocuments('collections',collectionArray.map(({title,items})=>({title,items}))) // we comment this code because we wanat to push the shop-data to the firesotore only one time if we don't want to the   
+    
   }
   componentWillUnmount(){
     this.unsubscribeFromAuth();
@@ -60,7 +62,8 @@ class App extends React.Component{
   }
 }
 const mapStateToProps=createStructuredSelector({
-  currentUser:currentUserSelector
+  currentUser:currentUserSelector,
+  collectionArray:collectionOverviewSelector
 })
 const mapDispatchToProps=(dispatch)=>({
   setCurrentUser:(user)=>dispatch(setCurrentUser(user))

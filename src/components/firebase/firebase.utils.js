@@ -10,7 +10,7 @@ const config={
   appId: "1:931868936150:web:71c82224a04a755c034677"
 };
 
-//now we are creating function that allows us to take the user auth object that we got back from the authentication library and store it inside of database.That function will be aysncronous.The frist parameter of the function is user auth object and the second parameter is for additional data.So we only want to perfrorm this save to our database if we get back a user auth object(mean sign In ,not sign out) it means if the user auth object doesn't exist then we exit the function and if the user auth object is exist and then we are querin inside a firestore for the document to see if it already exist  
+
 
 
 firebase.initializeApp(config);
@@ -24,8 +24,8 @@ export const signInWithGoogle=()=>auth.signInWithPopup(provider)
 export const createUserProfileDocument=async(userAuth,additionalData)=>{
     if(!userAuth) return;
     const userRef=firestore.doc(`/users/${userAuth.uid}`);  //it will return us queryReference object
-    // const userCollection=firestore.collection(`/users`);  
-    // const querySnapShoot=await userCollection.get()  
+    const userCollectionRef=firestore.collection(`/users`);  
+    const querySnapShoot=await userCollectionRef.get();  
     const snapShoot=await userRef.get();
     
     if(!snapShoot.exist){
@@ -43,15 +43,43 @@ export const createUserProfileDocument=async(userAuth,additionalData)=>{
         } catch (error) {
             console.log("shanpShoot error :",error.message)
         }
-    
     }
-
     // console.log("DocumentReference:",userRef)  
     // console.log("DocumentSnapShoot:",snapShoot)  
-    // console.log("QuerySnapShoot:",userCollection)  
+    // console.log("QuerySnapShoot:",userCollectionRef)  
     // console.log("QuerySnapShootObject:",querySnapShoot)  
+    // console.log("QuerySnapShootObjectSingleItem:",{querySnapShootObject:querySnapShoot.docs.map(doc=>doc.data()) })  
     return userRef
 }
+
+    export const addCollectionsAndDocuments=async (collectionId,objectToAdd)=>{
+    const userCollectionRef=firestore.collection(collectionId);
+    const batch=firestore.batch();
+    objectToAdd.forEach(obj=>{
+        const newDocRefObj=userCollectionRef.doc();
+        batch.set( newDocRefObj,obj ) // the first parameter for the id and secnd for the data
+    })
+    // userCollectionRef.add(objectToAdd.forEach(item=>item))
+    // console.log("It is the userCollection Reference",userCollectionRef.doc())
+
+    return await batch.commit();
+}
+    export const takingFirestoreObjectData=colRef=>{
+         const takingData=colRef.docs.map(queryObject=>{
+            //  console.log("queryObjec",queryObject.data())
+            const {title,items}=queryObject.data()
+            const id=queryObject.id;
+            const routeName=encodeURI(title.toLowerCase());
+            return{id,routeName,title,items}
+            
+            })
+        //    return console.log("check the query object",takingData.forEach(singleObject=>singleObject))
+        return takingData.reduce((accumolator,item)=>{
+            accumolator[item.title.toLowerCase()]=item
+            return accumolator
+        },{})
+        }
+      
 export default firebase
 
 

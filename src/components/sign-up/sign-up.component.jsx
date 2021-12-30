@@ -22,7 +22,9 @@ class SignUp extends React.Component{
             }
             try {
                 const {user}=await auth.createUserWithEmailAndPassword(email,password); //it will return us the userAuth object
+                
                 await createUserProfileDocument(user,{displayName});
+                console.log("signIn user",user);
                 this.setState({
                 displayName:'',
                 email:'',
@@ -41,8 +43,8 @@ class SignUp extends React.Component{
 
     render(){
         const{displayName,email,password,confirmPassword}=this.state;
-        console.log("this is the state:",this.state);
-        console.log("this is the displayName:",displayName);
+        // console.log("this is the state:",this.state);
+        // console.log("this is the displayName:",displayName);
         return(
             <div className="sign-up">
                 <h2 className="title">I do not have account</h2>

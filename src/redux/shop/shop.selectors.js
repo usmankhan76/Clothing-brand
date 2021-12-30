@@ -16,7 +16,7 @@ const shopDataSelector=createSelector(
 
  export const collectionOverviewSelector=createSelector(
     [shopDataSelector],
-    collections=>Object.keys(collections).map(key=>collections[key])  // for this logic see the object_methods javasScrip file
+    collections=>collections?(Object.keys(collections).map(key=>collections[key])):[]  // for this logic see the object_methods javasScrip file
     )
 // export const collectionSelector=collectionUrlParam=>createSelector(
 //     [shopDataSelector],
@@ -26,7 +26,7 @@ const shopDataSelector=createSelector(
 
 export const collectionSelector=collectionUrlParam=>createSelector(
     [shopDataSelector],
-    collections=>collections[collectionUrlParam]
+    collections=>collections?( collections[collectionUrlParam]):null    
 ) 
 
 export default shopDataSelector
