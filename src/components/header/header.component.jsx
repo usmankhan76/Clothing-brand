@@ -7,7 +7,7 @@ import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import { cartHiddenSelector } from "../../redux/cart/cart.selectors";
 import { currentUserSelector } from "../../redux/user/user.selectors";
 import {createStructuredSelector} from 'reselect'
-import { HeaderContainer, LogoContainer, OptionContainer, OptionDiv, OptionLink } from "./header.styles";
+import { HeaderContainer, LogoContainer, OptionContainer, OptionLink } from "./header.styles";
  const Header = ({currentUser,hidden}) => {
     //  console.log("This is the hidden",hidden);
     //  console.log("This is the user in header",currentUser);

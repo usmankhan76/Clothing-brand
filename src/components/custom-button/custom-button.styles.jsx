@@ -22,24 +22,24 @@ const invertedButtonStyles = css`
   }
 `;
 
-const googleSignInStyles = css`
-  background-color: #4285f4;
-  color: white;
-  &:hover {
-    background-color: #357ae8;
-    border: none;
-  }
-`;
+// const googleSignInStyles = css`
+//   background-color: #4285f4;
+//   color: white;
+//   &:hover {
+//     background-color: #357ae8;
+//     border: none;
+//   }
+// `;
 
 
-const getButtonStyles = (props) => {
-      console.log("this is props in custom style:",props);
-    // if (props.isGoogleSignIn) {
-    //   return googleSignInStyles;
-    // }
+// const getButtonStyles = (props) => {
+//       console.log("this is props in custom style:",props);
+//     // if (props.isGoogleSignIn) {
+//     //   return googleSignInStyles;
+//     // }
   
-    return props.inverted ? invertedButtonStyles  : buttonStyles;
-  };
+//     return props.inverted ? invertedButtonStyles  : buttonStyles;
+//   };
 
 
 export const CustomButtonContainer = styled.button`

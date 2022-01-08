@@ -28,5 +28,16 @@ export const collectionSelector=collectionUrlParam=>createSelector(
     [shopDataSelector],
     collections=>collections?( collections[collectionUrlParam]):null    
 ) 
+export const fetchCollections=createSelector(
+    [shopSelector],
+    shop=>shop.isFetching
+)
+export const isCollectionsLoadedSelector=createSelector(
+    [shopSelector],
+    shop=>!!shop.collections
+    // read this article for double bang operator
+    //https://dev.to/sanchithasr/what-is-the-double-bang-operator-in-javascript-4i3h
+
+)
 
 export default shopDataSelector

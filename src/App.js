@@ -6,7 +6,7 @@ import React from 'react'
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
-import { addCollectionsAndDocuments, auth,createUserProfileDocument } from './components/firebase/firebase.utils';
+import {  auth,createUserProfileDocument } from './components/firebase/firebase.utils';
 import { connect } from 'react-redux';
 import setCurrentUser from './redux/user/user-action';
 import { currentUserSelector } from './redux/user/user.selectors';
