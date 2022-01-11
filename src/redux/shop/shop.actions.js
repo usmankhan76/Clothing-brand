@@ -1,7 +1,7 @@
 import { firestore, takingFirestoreObjectData } from "../../components/firebase/firebase.utils";
 import { updataCollectionTypes } from "./shop.types";
 
- const fetchCollectionsStart=()=>({
+ export const fetchCollectionsStart=()=>({
     type:updataCollectionTypes.FETCH_COLLECTIONS_START
     // we don't want to pass the payload because we only want to change the isFetching property
 })

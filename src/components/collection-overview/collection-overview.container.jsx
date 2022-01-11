@@ -11,5 +11,8 @@ const mapStateToProps=createStructuredSelector({
 })
 //  export const collectionOverwiewWithContainer=connect(mapStateToProps)
 //  (WithSpinner(CollectionOverview)) // instead of writing this we can also write it with compose redux like below
-export const CollectionOverviewWithContainer=compose(
-    connect(mapStateToProps),WithSpinner)(CollectionOverview)
+export const CollectionOverviewWithContainer=
+compose(
+    connect(mapStateToProps),
+    WithSpinner
+    )(CollectionOverview)

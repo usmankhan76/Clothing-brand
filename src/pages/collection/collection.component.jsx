@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import './collection.styles.scss'
 import { collectionSelector } from '../../redux/shop/shop.selectors';
 import CollectionItem from '../../components/collection-item/collection-item.component'
-const CollectionPage = ({collection:{items,title}}) => {
+const CollectionPage = (props) => {
     // console.log("collection props",match.params.collectionId);
     // console.log("collection",collection);
-    
+      const {collection:{items,title}}=props
+    console.log("collection page",props);
     return (
         <div className='collection-page'>
             <h2 className='title'>{title}</h2>

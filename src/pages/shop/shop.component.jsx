@@ -4,7 +4,7 @@ import CollectionOverview from '../../components/collection-overview/collection-
 import { Route } from 'react-router-dom';
 import CollectionPage from '../collection/collection.component';
 import {  createStructuredSelector } from 'reselect';
-import { fetchCollectionsAsync } from '../../redux/shop/shop.actions';
+import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 import WithSpinner from '../../components/with-spinner/with-spinner.component';
 import { fetchCollections, isCollectionsLoadedSelector } from '../../redux/shop/shop.selectors';
 import { CollectionOverviewWithContainer } from '../../components/collection-overview/collection-overview.container';
@@ -15,14 +15,14 @@ const UpdateCollectionPage=WithSpinner(CollectionPage);
 class ShopPage extends React.Component{ 
   componentDidMount(){
     const {fetchCollectionsStartAsync}=this.props
+    const {fetchCollectionsStart}=this.props
     // console.log("shop component rendered",fetchCollectionsStartAsync())
-    fetchCollectionsStartAsync()
+    fetchCollectionsStart()
     
   }
   render(){
     const {match}=this.props;
     const {isCollectionFetching,isCollectionsLoadedSelector}=this.props 
-     
       console.log("shopPage props:",this.props);
     return (
             <div className="shop-page">
@@ -34,10 +34,12 @@ class ShopPage extends React.Component{
               component={CollectionOverviewWithContainer}
               />
              <Route exact path={`${match.path}/:collectionId`}
-              render={(props)=>
-             <UpdateCollectionPage 
+              render={(props)=>{
+                console.log("reder props",{props})
+             return <UpdateCollectionPage 
              isloading={!isCollectionsLoadedSelector} 
-             {...props}/>}
+             {...props}
+             />}}
             // component={CollectionPageContainer}
              />
             </div>
@@ -46,7 +48,7 @@ class ShopPage extends React.Component{
     
 }
 const mapDispatchToProps=(dispatch)=>({
-  fetchCollectionsStartAsync:()=>dispatch(fetchCollectionsAsync())
+  fetchCollectionsStart:()=>dispatch(fetchCollectionsStart())
 })
 const mapStateToProps=createStructuredSelector({
   // isCollectionFetching:fetchCollections,
