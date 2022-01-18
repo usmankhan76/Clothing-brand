@@ -31,7 +31,8 @@ export const store=createStore(
     export const persistor=persistStore(store); // we create new persisted version of our store using persistStore
     sagaMiddleware.run(rootSaga)
 
-    export default {persistor,store}
+    // export default {persistor,store}
+    export default store
 
 
     // persistStore allow our browser to actually cache or store now depending on certain confihguration option that we going to set 
