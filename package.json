@@ -15,6 +15,7 @@
     "react-scripts": "^3.4.4",
     "react-stripe-checkout": "^2.6.3",
     "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.0.2",
