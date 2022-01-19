@@ -68,7 +68,7 @@
         try {
             const{user}= yield auth.createUserWithEmailAndPassword(email,password);
             // yield getSnapShotfromUserAuth(user,displayName)  // we can also sign up by this way but comment the signInAfterSignup generator  and uncomment this line
-            yield put(singUpSuccess({user,additionalDatat:{displayName}}));
+            yield put(singUpSuccess({user,additionalData:{displayName}}));
             
         } catch (error) {
             put(signUpFailure(error))
