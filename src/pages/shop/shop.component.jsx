@@ -23,7 +23,7 @@ class ShopPage extends React.Component{
   render(){
     const {match}=this.props;
     const {isCollectionFetching,isCollectionsLoadedSelector}=this.props 
-      console.log("shopPage props:",this.props);
+      // console.log("shopPage props:",this.props);
     return (
             <div className="shop-page">
              <Route exact path={`${match.path}`} 
@@ -35,7 +35,7 @@ class ShopPage extends React.Component{
               />
              <Route exact path={`${match.path}/:collectionId`}
               render={(props)=>{
-                console.log("reder props",{props})
+                // console.log("reder props",{props})
              return <UpdateCollectionPage 
              isloading={!isCollectionsLoadedSelector} 
              {...props}
