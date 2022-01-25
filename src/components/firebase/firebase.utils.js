@@ -25,7 +25,7 @@ export const createUserProfileDocument=async(userAuth,additionalData)=>{
     if(!userAuth) return;
     const userRef=firestore.doc(`/users/${userAuth.uid}`);  //it will return us queryReference object
     const userCollectionRef=firestore.collection(`/users`);  
-    const querySnapShoot=await userCollectionRef.get();  
+    // const querySnapShoot=await userCollectionRef.get();  
     const snapShoot=await userRef.get();
     
     if(!snapShoot.exist){

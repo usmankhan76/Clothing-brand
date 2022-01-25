@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 
 const CollectionOverview = (props) => {
     const {collections}=props
-    console.log("collection Overview props",props);
+    
     return (
         <div className="collections-overview">
              {collections.map(({id, ...otherprops})=>(

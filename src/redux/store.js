@@ -5,7 +5,7 @@ import logger from "redux-logger";
 //logger is the middleware ,it is just just the functions that receive the actions and then do something with them and then pass them out in the root reducer
 import createSagaMiddleware from 'redux-saga'
 
-import { composeWithDevTools } from "redux-devtools-extension";
+// import { composeWithDevTools } from "redux-devtools-extension";
 import rootSaga from "./root-saga";
 
 
