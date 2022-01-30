@@ -5,18 +5,17 @@ import React, { useEffect } from 'react'
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
-import { connect } from 'react-redux';
+import {  useDispatch, useSelector } from 'react-redux';
 import { currentUserSelector } from './redux/user/user.selectors';
-import {createStructuredSelector} from 'reselect';
 import CheckoutPage from './pages/checkout/checkout.component';
-import {collectionOverviewSelector} from './redux/shop/shop.selectors'
 import { checkUserSession } from './redux/user/user-action';
 
-const App=({checkUserSession,currentUser})=>{
-
+const App=()=>{
+      const currentUser=useSelector(currentUserSelector) // we pass the selector in useSelector
+      const dispatch=useDispatch();
      useEffect(()=>{
-      checkUserSession(); 
-     },[checkUserSession])
+      dispatch(checkUserSession()); 
+     },[dispatch]) // to underStand this watch the module 22 useDispatch 
   
  
   
@@ -37,13 +36,7 @@ const App=({checkUserSession,currentUser})=>{
     );
   }
 
-const mapStateToProps=createStructuredSelector({
-  currentUser:currentUserSelector,
-  collectionArray:collectionOverviewSelector
-})
-const mapDispatchToProps=dispatch=>({
-  checkUserSession:()=>dispatch(checkUserSession())
-})
 
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+
+export default (App);
 
