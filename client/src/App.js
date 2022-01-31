@@ -21,7 +21,7 @@ const App=()=>{
   
      return (
       <div className="App">
-          <Header />
+        <Header />
         <Switch>
         <Route exact path="/" component={Homepage}/>
         <Route path="/shop" component={ShopPage}/>

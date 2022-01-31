@@ -29,7 +29,7 @@ const CheckoutPage = ({cartItems,total}) => {
             
             {cartItems.map((item)=><CheckoutItem key={item.id} item={item}/>)}
         <div className="total">TOTAL: ${total}</div> 
-        <div className='test-warning'>Enter the following card number <br/> 4242424242424242</div>  
+        <div className='test-warning'>Enter the following card number <br/> 4242-4242-4242-4242</div>  
           <StripeButtom  price={total}/>  
         </div>
     )
