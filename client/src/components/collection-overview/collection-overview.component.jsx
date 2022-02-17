@@ -9,6 +9,7 @@ const CollectionOverview = (props) => {
     
     return (
         <div className="collections-overview">
+            {/* <h1>This is the overview</h1> */}
              {collections.map(({id, ...otherprops})=>(
                 <PreviewCollection key={id} {...otherprops} {...props}/>
             ))}

@@ -5,33 +5,41 @@ import { cartItemsSelector, cartTotalSelector } from '../../redux/cart/cart.sele
 import { createStructuredSelector } from 'reselect'
 import CheckoutItem from '../../components/checkout-item/checkout-item.component'
 import StripeButtom from '../../components/stripe-button/stripe-button.component'
+import { CheckoutHeaderContainer, CheckoutPageContainer, HeaderBlockContainer, TotalContainer, WarningContainer } from './checkout.styles'
 
 const CheckoutPage = ({cartItems,total}) => {
     return  (
-        <div className='checkout-page'>
-            <div className="checkout-header">
-                <div className="header-block">
+        <CheckoutPageContainer className='checkout-page'>
+            <CheckoutHeaderContainer className="checkout-header">
+                <HeaderBlockContainer className="header-block">
                     <span className="product">Product</span>
-                </div>
-                <div className="header-block">
+                </HeaderBlockContainer>
+
+                <HeaderBlockContainer >
                     <span>Description</span>
-                </div>
-                <div className="header-block">
+                </HeaderBlockContainer>
+
+                <HeaderBlockContainer >
                     <span>Quantity</span>
-                </div>
-                <div className="header-block">
+                </HeaderBlockContainer>
+
+                <HeaderBlockContainer >
                     <span>Price</span>
-                </div>
-                 <div className="header-block">
+                </HeaderBlockContainer>
+
+                 <HeaderBlockContainer >
                     <span>Remove</span>
-                </div>
-            </div>
+                </HeaderBlockContainer>
+                
+            </CheckoutHeaderContainer>
             
             {cartItems.map((item)=><CheckoutItem key={item.id} item={item}/>)}
-        <div className="total">TOTAL: ${total}</div> 
-        <div className='test-warning'>Enter the following card number <br/> 4242-4242-4242-4242</div>  
+
+        <TotalContainer className="total">TOTAL: ${total}</TotalContainer>
+
+        <WarningContainer className='test-warning'>Enter the following card number <br/> 4242-4242-4242-4242</WarningContainer>  
           <StripeButtom  price={total}/>  
-        </div>
+        </CheckoutPageContainer>
     )
 }
 const mapStateToProps=createStructuredSelector({

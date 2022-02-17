@@ -10,6 +10,9 @@ import { currentUserSelector } from './redux/user/user.selectors';
 import CheckoutPage from './pages/checkout/checkout.component';
 import { checkUserSession } from './redux/user/user-action';
 
+import { GlobalStyle } from './global.styles';
+
+
 const App=()=>{
       const currentUser=useSelector(currentUserSelector) // we pass the selector in useSelector
       const dispatch=useDispatch();
@@ -20,7 +23,8 @@ const App=()=>{
  
   
      return (
-      <div className="App">
+      <div>
+        <GlobalStyle/>
         <Header />
         <Switch>
         <Route exact path="/" component={Homepage}/>

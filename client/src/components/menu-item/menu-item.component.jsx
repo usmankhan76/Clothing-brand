@@ -1,24 +1,26 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import './menu-item.styles.scss'
+import { BackgroundImageContainer, ContentContainer, ContentSubtitle, ContentTitle, MenuItemContainer } from './menu-item.styles'
+
 
 const MenuItem=(props)=> {
     const {title,imageUrl,size,linkUrl,history,match}=props
     // console.log("This is the props:",match.url);
     return (
-         <div
-          className={`${size} menu-item`}
+         <MenuItemContainer
+          size={size}
               onClick={()=>history.push(`${match.url}${linkUrl}`)} //we can also do this by removing the match.rul but we have need to pass / in the linkUrl property 
           >
-              <div className='background-image'  
-              style={{backgroundImage:`url(${imageUrl})`}}
+              <BackgroundImageContainer   
+              imageUrl={imageUrl}
+              className='background-image' 
                />
-                    <div className="content">
+                    <ContentContainer className="content">
                        {/* <Link to='/hats' style={{textDecoration:'none'}} > <h1 className="title">{title.toUpperCase()}</h1></Link> */}
-                       <h1 className="title">{title.toUpperCase()}</h1>
-                        <span className="subtitle">Shop Now</span>
-                    </div>
-                </div>
+                       <ContentTitle>{title.toUpperCase()}</ContentTitle>
+                        <ContentSubtitle>Shop Now</ContentSubtitle>
+                    </ContentContainer>
+                </MenuItemContainer>
     )
 }
 export default withRouter(MenuItem) 
