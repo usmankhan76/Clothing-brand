@@ -1,6 +1,7 @@
 import React from 'react'
 import './cart-item.styles.scss'
 const CartItem = ({item:{imageUrl,name,price,quantity }}) => {
+    
     return (
         <div className='cart-item'>
             <img src={imageUrl} alt="item" />
@@ -16,4 +17,4 @@ const CartItem = ({item:{imageUrl,name,price,quantity }}) => {
     )
 }
 
-export default CartItem
+export default React.memo(CartItem) // we add the memo becasue this component is rendering that time equal to items ,if we add the memo it will run only that time if the items in its props change

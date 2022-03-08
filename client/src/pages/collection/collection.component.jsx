@@ -5,9 +5,10 @@ import { collectionSelector } from '../../redux/shop/shop.selectors';
 import CollectionItem from '../../components/collection-item/collection-item.component'
 import { useParams } from 'react-router-dom';
 const CollectionPage = () => {
-
+    // console.log("collection component",  props.collectionId);
     const params=useParams();
-    const collection=useSelector(collectionSelector(params.collectionId));   
+    const collection=useSelector(collectionSelector(params.collectionId));  
+    
     const {items,title}=collection;
 
     return (

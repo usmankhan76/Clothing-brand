@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, lazy } from 'react'
 import { connect } from 'react-redux';
 // import CollectionOverview from '../../components/collection-overview/collection-overview.component'
 import { Route } from 'react-router-dom';
@@ -7,10 +7,12 @@ import {  createStructuredSelector } from 'reselect';
 import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 import WithSpinner from '../../components/with-spinner/with-spinner.component';
 import { fetchCollections, isCollectionsLoadedSelector } from '../../redux/shop/shop.selectors';
-import { CollectionOverviewWithContainer } from '../../components/collection-overview/collection-overview.container';
-// import { CollectionPageContainer } from '../collection/collection.container';
+import  CollectionPageContainer  from '../collection/collection.container';
 
-  // const UpdateCollectionOverview=WithSpinner(CollectionOverview)
+const CollectionOverviewWithContainer  = lazy(()=>import('../../components/collection-overview/collection-overview.container'))
+
+// const UpdateCollectionOverview=WithSpinner(CollectionOverview)
+
   const UpdateCollectionPage=WithSpinner(CollectionPage);
   
   const ShopPage=( {fetchCollectionsStart,match,isCollectionsLoadedSelector})=>{ 

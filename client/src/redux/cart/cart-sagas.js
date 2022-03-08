@@ -20,7 +20,7 @@ function* onSignInClearCart(){
 export function* cartSagas(){
     yield all([
         call(onSignOutClearCart),
-        call(onSignInClearCart)
+        // call(onSignInClearCart)
     ])
 
 }

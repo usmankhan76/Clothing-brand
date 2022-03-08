@@ -6,6 +6,7 @@ import { BackgroundImageContainer, ContentContainer, ContentSubtitle, ContentTit
 const MenuItem=(props)=> {
     const {title,imageUrl,size,linkUrl,history,match}=props
     // console.log("This is the props:",match.url);
+    
     return (
          <MenuItemContainer
           size={size}

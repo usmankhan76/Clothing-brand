@@ -8,7 +8,7 @@ import storage from 'redux-persist/lib/storage'  // we get the local storge on o
 const persistConfig={
     key:'root', // key meaning at what point inside of our reducer object do we want to start store everything and we start from the root
     storage,
-    whitelist:['cart'] // whitelist take array in which we pass the reducer name in string only that we want to presist
+    whitelist:['cart',] // whitelist take array in which we pass the reducer name in string only that we want to presist
 }
 const rootReducer= combineReducers({
       user:userReducer,
