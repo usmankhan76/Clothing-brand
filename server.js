@@ -5,10 +5,11 @@ const path=require('path');
 if(process.env.NODE_ENV!=='production') require('dotenv').config()
 
 const stripe=require('stripe')(process.env.STRIPE_SECRET_KEY) //we can use process.env.STRIPE_SECRET_KET because of upper line
-
+const compression=require('compression');
 const app=express();  //it will create the new express application
 const port=process.env.PORT||5000; // server run on process.env.PORT it will create process port on deployment and on localhost 5000 
 
+ app.use(compression())
  app.use(bodyParser.json())  //any requests coming it process their body tag and convert into the json
 
  app.use(bodyParser.urlencoded({extended:true}))// it remove the spaces and symbols from the Url 
