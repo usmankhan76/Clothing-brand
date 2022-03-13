@@ -2,12 +2,9 @@ import './App.css';
 import { Route,Switch,Redirect} from 'react-router-dom';
 // import Homepage from './pages/homepage/homepage.component';
 import React, { useEffect,lazy } from 'react'
-
 import Header from './components/header/header.component';
-
 import {  useDispatch, useSelector } from 'react-redux';
 import { currentUserSelector } from './redux/user/user.selectors';
-
 import { checkUserSession } from './redux/user/user-action';
 import { GlobalStyle } from './global.styles';
 import { Suspense } from 'react';
@@ -18,6 +15,8 @@ const Homepage=lazy(()=>import('./pages/homepage/homepage.component'))
 const ShopPage=lazy(()=>import('./pages/shop/shop.component'))
 const SignInAndSignUpPage=lazy(()=>import('./pages/sign-in-and-sign-up/sign-in-and-sign-up.component'))
 const CheckoutPage=lazy(()=>import('./pages/checkout/checkout.component'))
+
+
 
 const App=()=>{
       const currentUser=useSelector(currentUserSelector) // we pass the selector in useSelector

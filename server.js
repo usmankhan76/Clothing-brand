@@ -2,6 +2,8 @@ const express = require('express');
 const cors=require('cors');
 const bodyParser=require('body-parser');
 const path=require('path');
+const enforce =require('express-sslify');
+
 if(process.env.NODE_ENV!=='production') require('dotenv').config()
 
 const stripe=require('stripe')(process.env.STRIPE_SECRET_KEY) //we can use process.env.STRIPE_SECRET_KET because of upper line
@@ -9,24 +11,32 @@ const compression=require('compression');
 const app=express();  //it will create the new express application
 const port=process.env.PORT||5000; // server run on process.env.PORT it will create process port on deployment and on localhost 5000 
 
- app.use(compression())
  app.use(bodyParser.json())  //any requests coming it process their body tag and convert into the json
 
  app.use(bodyParser.urlencoded({extended:true}))// it remove the spaces and symbols from the Url 
 
  app.use(cors()); //cors stand for cross origin request, it block the cross origin requests
 
-if(process.env.NODE_ENV==="production"){ // to understand this step watch the video module# 23 video# 3 
+  
 
+if(process.env.NODE_ENV==="production"){  //to understand this below step watch the converting our app to progressive web app last video
+    app.use(compression())
+    app.use(enforce.HTTPS({trustProtoHeader:true}))
+    // to understand below step watch the video module# 23 video# 3
     app.use(express.static(path.join(__dirname,'client/build')))
     app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+
   }); //it will pass the build html file 
 }
 
 app.listen(port,error=>{
     if(error) throw error;
     console.log('Server running on port'+ port );
+})
+
+app.get('/service-worker.js',(req,res)=>{
+    res.sendFile(path.resolve(__dirname,'..', 'build', 'service-worker.js'))
 })
 
 app.post('/payment',(req,res)=>{
