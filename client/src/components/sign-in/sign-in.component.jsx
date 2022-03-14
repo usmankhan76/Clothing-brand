@@ -24,8 +24,10 @@ const SignIn=({emailSignIn,googleSignIn})=>{
     
         
         return <div className="sign-in">
+            <div className="title">
             <h2>I already have account</h2>
             <span>Sign In with your email and password</span>
+                </div>
             <form onSubmit={handleSubmit}>
                 <FormInput 
                 name="email"
@@ -43,7 +45,7 @@ const SignIn=({emailSignIn,googleSignIn})=>{
                  value={password}
                  handleChange={handleChange}/>
                  <div className="buttons">
-                <CustomButtom type="submit">Sigin In</CustomButtom>
+                <CustomButtom type="submit" >Sigin In</CustomButtom>
                 <CustomButtom type="button" onClick={googleSignIn} isGoogleSignIn >Sigin In With Google</CustomButtom>
                  </div>
             </form>

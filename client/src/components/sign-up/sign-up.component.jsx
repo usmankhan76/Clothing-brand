@@ -32,8 +32,10 @@ const SignUp=({signUp})=>{
      
         return(
             <div className="sign-up">
-                <h2 className="title">I do not have account</h2>
+                <div className="title">
+                <h2 >I do not have account</h2>
                 <span>Sign up with youre email and password </span>
+                    </div>
                 
                 <form className="sign-up-form" onSubmit={handleSubmit}>
                     <FormInput 
@@ -68,7 +70,9 @@ const SignUp=({signUp})=>{
                     handleChange={handleChange}
                     required 
                     />
+                    <div className="button">
                     <CustomButtom type='submit'>Sign Up</CustomButtom>
+                        </div>
 
 
                 </form>

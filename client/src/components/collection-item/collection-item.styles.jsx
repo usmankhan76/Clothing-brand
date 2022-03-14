@@ -26,6 +26,7 @@ export const CollectionItemContainer = styled.div`
       }
       button {
         opacity: unset;
+        
       }
     }
   }
@@ -63,10 +64,6 @@ export const AddButton = styled(CustomButtom)`
       display:flex
   }
   @media screen and (max-width: 800px) {
-    // display: block;
-    // opacity: 0.9;
-    // min-width: unset;
-    // padding: 0 10px;
 
     height: 50px;
   letter-spacing: 0.5px;
@@ -111,3 +108,6 @@ export const PriceContainer = styled.span`
   width: 10%;
   text-align: right;
 `;
+
+
+

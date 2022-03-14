@@ -2,11 +2,30 @@
     width: 380px;
     display: flex;
     flex-direction: column;
+    
+    @media screen and (min-width:390) {
+        width: 100%;
+        align-items: center;
+    }
     .title{
         margin: 10px 0;
+        @media screen and (max-width:390px) {
+            width: 80%;
+            margin: 10px 20px;
+        
+        }
     }
+
     .buttons{
+        
         display: flex;
         justify-content: space-between;
+        @media screen and (max-width:390px) {
+            flex-direction: column;
+            // width: 80%;
+
+            margin: 10px 20px;
+        
+        }
     }
 }   
